@@ -1,0 +1,384 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["hi", "hello", "hey", "good morning", "good evening", "good afternoon"],
+      "responses": ["Hello!", "Hi there!", "Hey! How can I help you?", "Greetings!"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "exit", "quit", "see you", "good night"],
+      "responses": ["Goodbye!", "See you again!", "Have a nice day!", "Bye! Take care."]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thanks", "thank you", "thx", "thanks a lot"],
+      "responses": ["You're welcome!", "Happy to help!", "Anytime 🙂"]
+    },
+    {
+      "tag": "math_help",
+      "patterns": ["solve math", "calculate", "math problem", "math help", "do calculation"],
+      "responses": ["Sure 🙂 Enter any calculation like: 5+3, 10-4, 6*7, 20/5, 15% of 200"]
+    },
+    {
+      "tag": "wetlands_definition",
+      "patterns": ["what are wetlands", "define wetlands", "wetlands meaning", "explain wetlands"],
+      "responses": ["Wetlands are areas of land that are permanently or seasonally covered with water, such as marshes, swamps, bogs, lakes, and estuaries."]
+    },
+    {
+      "tag": "wetlands_importance",
+      "patterns": ["why are wetlands important", "importance of wetlands", "uses of wetlands"],
+      "responses": ["Wetlands help in flood control, water purification, groundwater recharge, biodiversity conservation, and climate regulation."]
+    },
+    {
+      "tag": "types_of_wetlands",
+      "patterns": ["name different types of wetlands", "types of wetlands", "classification of wetlands"],
+      "responses": ["Marshes, swamps, bogs, fens, mangroves, estuaries, peatlands, and lagoons."]
+    },
+    {
+      "tag": "ramsar_convention",
+      "patterns": ["what is ramsar convention", "define ramsar convention"],
+      "responses": ["The Ramsar Convention is an international treaty (1971) for the conservation and sustainable use of wetlands."]
+    },
+    {
+      "tag": "first_ramsar_site",
+      "patterns": ["which is the first ramsar site in india", "first ramsar site"],
+      "responses": ["Chilika Lake in Odisha."]
+    },
+    {
+      "tag": "flood_control",
+      "patterns": ["how do wetlands control floods", "role of wetlands in flood control"],
+      "responses": ["Wetlands absorb and store excess rainwater and slowly release it, reducing flood impact."]
+    },
+    {
+      "tag": "water_purification",
+      "patterns": ["how do wetlands help in water purification", "wetlands water purification"],
+      "responses": ["Wetlands filter pollutants, sediments, and nutrients through plants and soil."]
+    },
+    {
+      "tag": "mangrove",
+      "patterns": ["what is a mangrove wetland", "define mangrove wetland"],
+      "responses": ["A coastal wetland with salt-tolerant trees that protect coastlines from erosion and storms."]
+    },
+    {
+      "tag": "famous_wetlands",
+      "patterns": ["name two famous wetlands in india", "famous wetlands in india"],
+      "responses": ["Chilika Lake (Odisha) and Vembanad Lake (Kerala)."]
+    },
+    {
+      "tag": "wetland_plants",
+      "patterns": ["what kind of plants grow in wetlands", "wetland plants"],
+      "responses": ["Hydrophytes such as reeds, cattails, lotus, mangroves, and water lilies."]
+    },
+    {
+      "tag": "wetland_animals",
+      "patterns": ["what animals live in wetlands", "wetland animals"],
+      "responses": ["Fish, frogs, birds, insects, reptiles, and mammals like otters."]
+    },
+    {
+      "tag": "climate_control",
+      "patterns": ["how do wetlands help in climate control", "wetlands climate control"],
+      "responses": ["Wetlands store carbon and regulate temperature, helping reduce climate change effects."]
+    },
+    {
+      "tag": "peatland",
+      "patterns": ["what is peatland", "define peatland"],
+      "responses": ["A wetland where dead plants accumulate as peat, storing large amounts of carbon."]
+    },
+    {
+      "tag": "wetland_threats",
+      "patterns": ["what are the main threats to wetlands", "threats to wetlands"],
+      "responses": ["Pollution, drainage, urbanization, agriculture, climate change, and deforestation."]
+    },
+    {
+      "tag": "wetland_conservation",
+      "patterns": ["what is wetland conservation", "define wetland conservation"],
+      "responses": ["Protection, restoration, and sustainable management of wetlands."]
+    },
+    {
+      "tag": "biodiversity",
+      "patterns": ["how do wetlands support biodiversity", "wetlands biodiversity"],
+      "responses": ["They provide habitat, food, and breeding grounds for many species."]
+    },
+    {
+      "tag": "estuary",
+      "patterns": ["what is an estuary", "define estuary"],
+      "responses": ["A wetland where freshwater from rivers mixes with saltwater from the sea."]
+    },
+    {
+      "tag": "wetland_birds",
+      "patterns": ["which bird species depend on wetlands", "wetland birds"],
+      "responses": ["Flamingos, herons, cranes, storks, ducks, and migratory birds."]
+    },
+    {
+      "tag": "world_wetlands_day",
+      "patterns": ["what is world wetlands day", "world wetlands day"],
+      "responses": ["February 2 is observed as World Wetlands Day to raise awareness about wetland conservation."]
+    },
+    {
+      "tag": "wetland_protection",
+      "patterns": ["how can we protect wetlands", "wetland protection methods"],
+      "responses": ["By reducing pollution, preventing encroachment, promoting awareness, and enforcing conservation laws."]
+    },
+    {
+      "tag": "ml_basics",
+      "patterns": ["what is machine learning", "define machine learning", "explain machine learning", "ml basics"],
+      "responses": ["Machine learning is a subset of artificial intelligence that enables systems to learn from data and improve their performance without being explicitly programmed."]
+    },
+    {
+      "tag": "supervised_learning",
+      "patterns": ["what is supervised learning", "define supervised learning", "explain supervised learning"],
+      "responses": ["Supervised learning is a machine learning approach where models learn from labeled training data with input-output pairs. Examples include regression and classification."]
+    },
+    {
+      "tag": "unsupervised_learning",
+      "patterns": ["what is unsupervised learning", "define unsupervised learning", "explain unsupervised learning"],
+      "responses": ["Unsupervised learning finds patterns in unlabeled data without predefined outputs. Common techniques include clustering and dimensionality reduction."]
+    },
+    {
+      "tag": "neural_networks",
+      "patterns": ["what are neural networks", "define neural networks", "explain neural networks", "how neural networks work"],
+      "responses": ["Neural networks are computing systems inspired by biological brains. They consist of interconnected nodes (neurons) organized in layers that learn to recognize patterns through training."]
+    },
+    {
+      "tag": "deep_learning",
+      "patterns": ["what is deep learning", "define deep learning", "explain deep learning"],
+      "responses": ["Deep learning uses neural networks with multiple hidden layers to learn complex patterns from large amounts of data. It powers modern AI applications."]
+    },
+    {
+      "tag": "regression",
+      "patterns": ["what is regression", "define regression", "explain regression"],
+      "responses": ["Regression is a supervised learning technique used to predict continuous numerical values based on input features. Examples: linear regression, polynomial regression."]
+    },
+    {
+      "tag": "classification",
+      "patterns": ["what is classification", "define classification", "explain classification"],
+      "responses": ["Classification is a supervised learning task that predicts discrete categories or classes. Examples: email spam detection, image recognition, disease diagnosis."]
+    },
+    {
+      "tag": "clustering",
+      "patterns": ["what is clustering", "define clustering", "explain clustering"],
+      "responses": ["Clustering is an unsupervised learning technique that groups similar data points together. Common algorithms: K-means, hierarchical clustering, DBSCAN."]
+    },
+    {
+      "tag": "activation_function",
+      "patterns": ["what are activation functions", "define activation function", "explain activation functions"],
+      "responses": ["Activation functions introduce non-linearity to neural networks, allowing them to learn complex patterns. Common functions: ReLU, Sigmoid, Tanh."]
+    },
+    {
+      "tag": "backpropagation",
+      "patterns": ["what is backpropagation", "define backpropagation", "explain backpropagation"],
+      "responses": ["Backpropagation is an algorithm for training neural networks by calculating gradients and updating weights to minimize loss. It's fundamental to deep learning."]
+    },
+    {
+      "tag": "overfitting",
+      "patterns": ["what is overfitting", "define overfitting", "explain overfitting"],
+      "responses": ["Overfitting occurs when a model learns the training data too well, including noise, and performs poorly on new data. Prevention: regularization, early stopping, cross-validation."]
+    },
+    {
+      "tag": "underfitting",
+      "patterns": ["what is underfitting", "define underfitting", "explain underfitting"],
+      "responses": ["Underfitting happens when a model is too simple to capture the underlying patterns in data. It performs poorly on both training and test data."]
+    },
+    {
+      "tag": "loss_function",
+      "patterns": ["what is a loss function", "define loss function", "explain loss function"],
+      "responses": ["A loss function measures the difference between predicted and actual values. It guides model training. Examples: Mean Squared Error, Cross Entropy Loss."]
+    },
+    {
+      "tag": "gradient_descent",
+      "patterns": ["what is gradient descent", "define gradient descent", "explain gradient descent"],
+      "responses": ["Gradient descent is an optimization algorithm that iteratively adjusts model parameters to minimize the loss function. It's used to train most machine learning models."]
+    },
+    {
+      "tag": "feature_engineering",
+      "patterns": ["what is feature engineering", "define feature engineering", "explain feature engineering"],
+      "responses": ["Feature engineering is the process of selecting and transforming raw data into meaningful features for machine learning models. It significantly impacts model performance."]
+    },
+    {
+      "tag": "cross_validation",
+      "patterns": ["what is cross validation", "define cross validation", "explain cross validation"],
+      "responses": ["Cross-validation divides data into multiple subsets to train and test a model, ensuring better generalization and reducing overfitting."]
+    },
+    {
+      "tag": "hyperparameter",
+      "patterns": ["what are hyperparameters", "define hyperparameter", "explain hyperparameter"],
+      "responses": ["Hyperparameters are settings configured before training (learning rate, batch size, number of layers). They control the learning process of models."]
+    },
+    {
+      "tag": "convolutional_networks",
+      "patterns": ["what are convolutional neural networks", "define cnn", "explain cnn", "convolutional networks"],
+      "responses": ["CNNs are deep learning networks designed for image processing. They use convolutional layers to detect patterns and are widely used in computer vision."]
+    },
+    {
+      "tag": "recurrent_networks",
+      "patterns": ["what are recurrent neural networks", "define rnn", "explain rnn", "recurrent networks"],
+      "responses": ["RNNs are neural networks with feedback loops that process sequential data. They're ideal for time series and natural language processing tasks."]
+    },
+    {
+      "tag": "marshes_vs_swamps",
+      "patterns": ["difference between marshes and swamps", "marshes vs swamps", "what is the difference between marshes and swamps"],
+      "responses": ["Marshes are dominated by grasses and herbs with shallow water, while swamps are forested areas with trees and deeper water. Both are wetlands with different vegetation."]
+    },
+    {
+      "tag": "bog",
+      "patterns": ["what is a bog", "define bog", "explain bog"],
+      "responses": ["A bog is a wetland characterized by acidic soil, peat deposits, and specialized plants like sphagnum moss. Bogs retain water and are carbon-rich ecosystems."]
+    },
+    {
+      "tag": "fen",
+      "patterns": ["what is a fen", "define fen", "explain fen"],
+      "responses": ["A fen is a peatland wetland fed by groundwater, less acidic than bogs, and rich in nutrients. Fens support diverse plant and animal communities."]
+    },
+    {
+      "tag": "delta",
+      "patterns": ["what is a delta", "define delta", "explain delta"],
+      "responses": ["A delta is a wetland formed where a river meets the sea, depositing sediment and creating unique habitats. Deltas are highly productive ecosystems."]
+    },
+    {
+      "tag": "seasonal_vs_permanent",
+      "patterns": ["seasonal wetlands vs permanent wetlands", "difference seasonal and permanent wetlands"],
+      "responses": ["Seasonal wetlands are flooded temporarily during certain seasons, while permanent wetlands are always water-covered. Both support different species."]
+    },
+    {
+      "tag": "coastal_vs_inland",
+      "patterns": ["coastal wetlands vs inland wetlands", "difference coastal and inland wetlands"],
+      "responses": ["Coastal wetlands are influenced by salt water and tides (mangroves, salt marshes), while inland wetlands are freshwater systems (marshes, swamps, bogs)."]
+    },
+    {
+      "tag": "economic_value",
+      "patterns": ["economic value of wetlands", "what is economic importance of wetlands"],
+      "responses": ["Wetlands provide economic benefits through fisheries, tourism, water purification services, carbon storage, and natural disaster protection worth billions."]
+    },
+    {
+      "tag": "wetland_restoration",
+      "patterns": ["wetland restoration methods", "how to restore wetlands", "wetland restoration"],
+      "responses": ["Wetland restoration involves reestablishing hydrology, planting native vegetation, removing invasive species, and monitoring ecosystem recovery."]
+    },
+    {
+      "tag": "groundwater_recharge",
+      "patterns": ["groundwater recharge in wetlands", "how wetlands recharge groundwater"],
+      "responses": ["Wetlands absorb water that slowly percolates down, replenishing underground aquifers that supply drinking water to millions of people."]
+    },
+    {
+      "tag": "wetland_soil",
+      "patterns": ["soil types in wetlands", "wetland soil characteristics"],
+      "responses": ["Wetland soils are waterlogged with little oxygen, rich in organic matter and peat, supporting specialized vegetation adapted to anaerobic conditions."]
+    },
+    {
+      "tag": "transfer_learning",
+      "patterns": ["what is transfer learning", "define transfer learning", "explain transfer learning"],
+      "responses": ["Transfer learning uses knowledge from a pre-trained model on one task to improve learning on a different but related task. It reduces training time and data requirements."]
+    },
+    {
+      "tag": "ensemble_methods",
+      "patterns": ["what are ensemble methods", "define ensemble methods", "explain ensemble methods"],
+      "responses": ["Ensemble methods combine multiple models to produce better predictions. Examples: Random Forest, Gradient Boosting, Voting Classifiers. They improve accuracy."]
+    },
+    {
+      "tag": "random_forest",
+      "patterns": ["what is random forest", "define random forest", "explain random forest"],
+      "responses": ["Random Forest is an ensemble method combining multiple decision trees. Each tree votes on the prediction, reducing overfitting and improving generalization."]
+    },
+    {
+      "tag": "svm",
+      "patterns": ["what is svm", "define support vector machine", "explain svm"],
+      "responses": ["Support Vector Machine (SVM) finds the optimal hyperplane to separate classes in data. It works well for binary and multiclass classification problems."]
+    },
+    {
+      "tag": "kmeans",
+      "patterns": ["what is k-means", "define k-means", "explain k-means algorithm"],
+      "responses": ["K-means is an unsupervised clustering algorithm that partitions data into k clusters by minimizing distances from points to cluster centers."]
+    },
+    {
+      "tag": "pca",
+      "patterns": ["what is pca", "define pca", "explain principal component analysis"],
+      "responses": ["PCA (Principal Component Analysis) reduces dimensionality by transforming data to new uncorrelated axes capturing maximum variance. It simplifies models and reduces noise."]
+    },
+    {
+      "tag": "dropout",
+      "patterns": ["what is dropout", "define dropout regularization", "explain dropout"],
+      "responses": ["Dropout is a regularization technique randomly deactivating neurons during training, preventing overfitting and improving model robustness."]
+    },
+    {
+      "tag": "batch_normalization",
+      "patterns": ["what is batch normalization", "define batch normalization", "explain batch normalization"],
+      "responses": ["Batch normalization normalizes layer inputs during training, stabilizing learning, allowing higher learning rates, and improving model convergence."]
+    },
+    {
+      "tag": "optimizers",
+      "patterns": ["sgd vs adam optimizer", "difference between sgd and adam", "explain different optimizers"],
+      "responses": ["SGD updates weights using gradients. Adam combines momentum and adaptive learning rates for faster convergence. Adam usually outperforms SGD in practice."]
+    },
+    {
+      "tag": "evaluation_metrics",
+      "patterns": ["what are evaluation metrics", "accuracy precision recall f1", "explain evaluation metrics"],
+      "responses": ["Evaluation metrics measure model performance: Accuracy (correct predictions), Precision (true positives), Recall (sensitivity), F1-score (balance between precision and recall)."]
+    },
+    {
+      "tag": "confusion_matrix",
+      "patterns": ["what is confusion matrix", "define confusion matrix", "explain confusion matrix"],
+      "responses": ["A confusion matrix shows true positives, true negatives, false positives, and false negatives, helping evaluate classification model performance."]
+    },
+    {
+      "tag": "roc_auc",
+      "patterns": ["what is roc curve", "define auc", "explain roc and auc"],
+      "responses": ["ROC curve plots true positive rate vs false positive rate. AUC (Area Under Curve) measures classifier performance, where 1.0 is perfect and 0.5 is random."]
+    },
+    {
+      "tag": "lstm",
+      "patterns": ["what is lstm", "define lstm", "explain lstm"],
+      "responses": ["LSTM (Long Short-Term Memory) is a recurrent network solving vanishing gradient problems. It processes sequences with long-term dependencies in time series and NLP."]
+    },
+    {
+      "tag": "attention_mechanism",
+      "patterns": ["what is attention mechanism", "define attention mechanism", "explain attention"],
+      "responses": ["Attention mechanisms allow models to focus on relevant parts of input data. Used in transformers and seq2seq models for better performance on long sequences."]
+    },
+    {
+      "tag": "transformers",
+      "patterns": ["what are transformers", "define transformers", "explain transformers"],
+      "responses": ["Transformers use attention mechanisms to process sequences in parallel. They power modern language models like BERT and GPT for NLP tasks."]
+    },
+    {
+      "tag": "gans",
+      "patterns": ["what are gans", "define generative adversarial networks", "explain gans"],
+      "responses": ["GANs consist of generator and discriminator networks. Generator creates fake data, discriminator distinguishes fake from real, improving image generation quality."]
+    },
+    {
+      "tag": "autoencoders",
+      "patterns": ["what are autoencoders", "define autoencoder", "explain autoencoders"],
+      "responses": ["Autoencoders compress data through an encoder to latent representation, then reconstruct via decoder. Used for dimensionality reduction and anomaly detection."]
+    },
+    {
+      "tag": "nlp",
+      "patterns": ["what is nlp", "define natural language processing", "explain nlp"],
+      "responses": ["NLP (Natural Language Processing) applies machine learning to human language for tasks like translation, sentiment analysis, question answering, and text generation."]
+    },
+    {
+      "tag": "word_embeddings",
+      "patterns": ["what are word embeddings", "define word embeddings", "explain word embeddings"],
+      "responses": ["Word embeddings represent words as dense vectors capturing semantic meaning. Word2Vec and GloVe are popular methods enabling neural models to understand language."]
+    },
+    {
+      "tag": "sentiment_analysis",
+      "patterns": ["what is sentiment analysis", "define sentiment analysis", "explain sentiment analysis"],
+      "responses": ["Sentiment analysis determines emotional tone (positive/negative/neutral) in text. Used for social media monitoring, product reviews, and customer feedback analysis."]
+    },
+    {
+      "tag": "data_preprocessing",
+      "patterns": ["what is data preprocessing", "define data preprocessing", "explain data preprocessing"],
+      "responses": ["Data preprocessing cleans and transforms raw data: handling missing values, removing outliers, encoding categories, and normalizing features for model training."]
+    },
+    {
+      "tag": "normalization_standardization",
+      "patterns": ["data normalization vs standardization", "difference normalization standardization"],
+      "responses": ["Normalization scales data to 0-1 range. Standardization (Z-score) scales data to mean 0 and std 1. Use based on algorithm requirements and data distribution."]
+    },
+    {
+      "tag": "decision_trees",
+      "patterns": ["what are decision trees", "define decision trees", "explain decision trees"],
+      "responses": ["Decision trees recursively split data on features, creating tree structures for classification and regression. Easy to understand but prone to overfitting."]
+    }
+  ]
+}
