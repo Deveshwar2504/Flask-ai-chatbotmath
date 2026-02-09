@@ -16,7 +16,6 @@ page_bg = """
 
 [data-testid="stHeader"] {background: rgba(0,0,0,0);}
 
-/* Chat Window */
 .chat-window {
     height: 420px;
     overflow-y: auto;
@@ -25,7 +24,6 @@ page_bg = """
     flex-direction: column;
 }
 
-/* Chat Bubbles */
 .user-bubble {
     background: rgba(99, 102, 241, 0.35);
     color: white;
@@ -48,7 +46,6 @@ page_bg = """
     align-self: flex-start;
 }
 
-/* Input text black */
 input, textarea {color: black !important;}
 </style>
 """
@@ -56,7 +53,7 @@ st.markdown(page_bg, unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align:center;color:white;'>🤖 AI Chatbot</h1>", unsafe_allow_html=True)
 
-# Session state for chat history
+# Session Chat History
 if "chat" not in st.session_state:
     st.session_state.chat = []
 
@@ -64,7 +61,7 @@ if "chat" not in st.session_state:
 with open("intents.json", "r") as f:
     intents = json.load(f)
 
-# Load ML model
+# Load model
 data = torch.load("model.pth", map_location=torch.device("cpu"))
 model = NeuralNet(data["input_size"], data["hidden_size"], data["output_size"])
 model.load_state_dict(data["model_state"])
@@ -72,30 +69,31 @@ model.eval()
 all_words = data["all_words"]
 tags = data["tags"]
 
-# CHAT WINDOW
+# Chat window
 st.markdown("<div class='chat-window'>", unsafe_allow_html=True)
-for role, text in st.session_state.chat:
-    if role == "user":
+for sender, text in st.session_state.chat:
+    if sender == "user":
         st.markdown(f"<div class='user-bubble'>👤 {text}</div>", unsafe_allow_html=True)
     else:
         st.markdown(f"<div class='bot-bubble'>💬 {text}</div>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
-# INPUT BAR BELOW CHAT
-txt = st.text_input("You:", "", placeholder="Ask ML questions or type maths like 12*4")
-if st.button("Send") and txt.strip() != "":
+# Input
+msg = st.text_input("You:", "", placeholder="Ask ML questions or type maths like 12*4")
 
-    st.session_state.chat.append(["user", txt])
-    clean = clean_text(txt)
+if st.button("Send") and msg.strip() != "":
+    st.session_state.chat.append(["user", msg])
 
-    # Math calculation
+    clean = clean_text(msg)
+
+    # Math
     if is_math_expression(clean):
         reply = str(safe_eval(clean))
         st.session_state.chat.append(["bot", reply])
-        st.experimental_rerun()
+        st.rerun()
 
-    # NLP inference
-    sentence = tokenize(txt)
+    # NLP
+    sentence = tokenize(msg)
     X = bag_of_words(sentence, all_words)
     X = torch.from_numpy(X).unsqueeze(0)
 
@@ -113,6 +111,5 @@ if st.button("Send") and txt.strip() != "":
     else:
         st.session_state.chat.append(["bot", "I do not understand. Please rephrase."])
 
-    st.experimental_rerun()
-
-
+    st.rerun()
+  
