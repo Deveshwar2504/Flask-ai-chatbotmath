@@ -5,10 +5,9 @@ import random
 from model import NeuralNet
 from utils import tokenize, bag_of_words, clean_text, is_math_expression, safe_eval
 
-# Page configuration
 st.set_page_config(page_title="AI Chatbot", layout="centered")
 
-# Background gradient
+# Background + Chat Bubble CSS
 page_bg = """
 <style>
 [data-testid="stAppViewContainer"] {
@@ -17,6 +16,16 @@ page_bg = """
 
 [data-testid="stHeader"] {background: rgba(0,0,0,0);}
 
+/* Chat Window */
+.chat-window {
+    height: 420px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chat Bubbles */
 .user-bubble {
     background: rgba(99, 102, 241, 0.35);
     color: white;
@@ -25,6 +34,7 @@ page_bg = """
     margin: 8px 0;
     width: fit-content;
     max-width: 70%;
+    align-self: flex-end;
 }
 
 .bot-bubble {
@@ -35,102 +45,74 @@ page_bg = """
     margin: 8px 0;
     width: fit-content;
     max-width: 70%;
+    align-self: flex-start;
 }
 
-.user-align {align-self: flex-end;}
-.bot-align {align-self: flex-start;}
-
-.chat-container {
-    display: flex;
-    flex-direction: column;
-}
-input {color:white !important;}
+/* Input text black */
+input, textarea {color: black !important;}
 </style>
 """
 st.markdown(page_bg, unsafe_allow_html=True)
 
-# Title
 st.markdown("<h1 style='text-align:center;color:white;'>🤖 AI Chatbot</h1>", unsafe_allow_html=True)
+
+# Session state for chat history
+if "chat" not in st.session_state:
+    st.session_state.chat = []
 
 # Load intents
 with open("intents.json", "r") as f:
     intents = json.load(f)
 
 # Load ML model
-FILE = "model.pth"
-data = torch.load(FILE, map_location=torch.device("cpu"))
-input_size = data["input_size"]
-hidden_size = data["hidden_size"]
-output_size = data["output_size"]
+data = torch.load("model.pth", map_location=torch.device("cpu"))
+model = NeuralNet(data["input_size"], data["hidden_size"], data["output_size"])
+model.load_state_dict(data["model_state"])
+model.eval()
 all_words = data["all_words"]
 tags = data["tags"]
-model_state = data["model_state"]
 
-model = NeuralNet(input_size, hidden_size, output_size)
-model.load_state_dict(model_state)
-model.eval()
-
-# Chat input
-msg = st.text_input("You:", "", placeholder="Ask something about Machine Learning or type maths like 12*4")
-
-# SEND button
-if st.button("Send"):
-
-    # user bubble
-    st.markdown(
-        f"""
-        <div class='chat-container'>
-            <div class='user-bubble user-align'>👤 {msg}</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    clean = clean_text(msg)
-
-    # Math calculator
-    if is_math_expression(clean):
-        result = safe_eval(clean)
-        st.markdown(
-            f"""
-            <div class='chat-container'>
-                <div class='bot-bubble bot-align'>💬 {result}</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
+# CHAT WINDOW
+st.markdown("<div class='chat-window'>", unsafe_allow_html=True)
+for role, text in st.session_state.chat:
+    if role == "user":
+        st.markdown(f"<div class='user-bubble'>👤 {text}</div>", unsafe_allow_html=True)
     else:
-        # NLP model
-        sentence = tokenize(msg)
-        X = bag_of_words(sentence, all_words)
-        X = torch.from_numpy(X).unsqueeze(0)
+        st.markdown(f"<div class='bot-bubble'>💬 {text}</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
-        output = model(X)
-        _, predicted = torch.max(output, dim=1)
-        tag = tags[predicted.item()]
-        probs = torch.softmax(output, dim=1)
-        prob = probs[0][predicted.item()]
+# INPUT BAR BELOW CHAT
+txt = st.text_input("You:", "", placeholder="Ask ML questions or type maths like 12*4")
+if st.button("Send") and txt.strip() != "":
 
-        if prob.item() > 0.75:
-            for intent in intents["intents"]:
-                if tag == intent["tag"]:
-                    reply = random.choice(intent["responses"])
-                    st.markdown(
-                        f"""
-                        <div class='chat-container'>
-                            <div class='bot-bubble bot-align'>💬 {reply}</div>
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
-                    )
-                    break
-        else:
-            st.markdown(
-                """
-                <div class='chat-container'>
-                    <div class='bot-bubble bot-align'>💬 I do not understand. Please rephrase.</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+    st.session_state.chat.append(["user", txt])
+    clean = clean_text(txt)
+
+    # Math calculation
+    if is_math_expression(clean):
+        reply = str(safe_eval(clean))
+        st.session_state.chat.append(["bot", reply])
+        st.experimental_rerun()
+
+    # NLP inference
+    sentence = tokenize(txt)
+    X = bag_of_words(sentence, all_words)
+    X = torch.from_numpy(X).unsqueeze(0)
+
+    output = model(X)
+    _, predicted = torch.max(output, dim=1)
+    tag = tags[predicted.item()]
+    probs = torch.softmax(output, dim=1)
+    prob = probs[0][predicted.item()]
+
+    if prob.item() > 0.75:
+        for intent in intents["intents"]:
+            if tag == intent["tag"]:
+                st.session_state.chat.append(["bot", random.choice(intent["responses"])])
+                break
+    else:
+        st.session_state.chat.append(["bot", "I do not understand. Please rephrase."])
+
+    st.experimental_rerun()
+
+
