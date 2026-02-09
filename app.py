@@ -5,26 +5,20 @@ import random
 from model import NeuralNet
 from utils import tokenize, bag_of_words, clean_text, is_math_expression, safe_eval
 
-# Page config
+# Page configuration
 st.set_page_config(page_title="AI Chatbot", layout="centered")
 
-# Background style
-page_bg = f"""
+# Background gradient
+page_bg = """
 <style>
-[data-testid="stAppViewContainer"] {{
+[data-testid="stAppViewContainer"] {
     background: linear-gradient(135deg, #4f46e5, #9333ea);
-    background-size: cover;
-}}
-[data-testid="stHeader"] {{background: rgba(0,0,0,0);}}
-</style>
-"""
-st.markdown(page_bg, unsafe_allow_html=True)
+}
 
-# Chat bubble CSS
-bubble_css = """
-<style>
+[data-testid="stHeader"] {background: rgba(0,0,0,0);}
+
 .user-bubble {
-    background: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.35);
     color: white;
     padding: 10px 15px;
     border-radius: 15px;
@@ -32,8 +26,9 @@ bubble_css = """
     width: fit-content;
     max-width: 70%;
 }
+
 .bot-bubble {
-    background: rgba(168, 85, 247, 0.3);
+    background: rgba(168, 85, 247, 0.35);
     color: white;
     padding: 10px 15px;
     border-radius: 15px;
@@ -41,24 +36,27 @@ bubble_css = """
     width: fit-content;
     max-width: 70%;
 }
+
+.user-align {align-self: flex-end;}
+.bot-align {align-self: flex-start;}
+
 .chat-container {
     display: flex;
     flex-direction: column;
 }
-.user-align { align-self: flex-end; }
-.bot-align { align-self: flex-start; }
+input {color:white !important;}
 </style>
 """
-st.markdown(bubble_css, unsafe_allow_html=True)
+st.markdown(page_bg, unsafe_allow_html=True)
 
-# Title UI
+# Title
 st.markdown("<h1 style='text-align:center;color:white;'>🤖 AI Chatbot</h1>", unsafe_allow_html=True)
 
 # Load intents
 with open("intents.json", "r") as f:
     intents = json.load(f)
 
-# Load ML Model
+# Load ML model
 FILE = "model.pth"
 data = torch.load(FILE, map_location=torch.device("cpu"))
 input_size = data["input_size"]
@@ -72,23 +70,36 @@ model = NeuralNet(input_size, hidden_size, output_size)
 model.load_state_dict(model_state)
 model.eval()
 
-# Chat input box
-# Chat input box with white text
-st.markdown("<style> input {color:white !important;} </style>", unsafe_allow_html=True)
-user = st.text_input("You:", "", placeholder="Ask me anything about ML or calculate maths like 12*4")("You:", "", placeholder="Ask me anything about ML or calculate maths like 12*4")
+# Chat input
+msg = st.text_input("You:", "", placeholder="Ask something about Machine Learning or type maths like 12*4")
 
-# Send button placed under input box
+# SEND button
 if st.button("Send"):
-    # Display user bubble
-    st.markdown(f"<div class='chat-container'><div class='user-bubble user-align'>👤 {msg}</div></div>", unsafe_allow_html=True)
-("Send"):("Send"):
-    msg = user
+
+    # user bubble
+    st.markdown(
+        f"""
+        <div class='chat-container'>
+            <div class='user-bubble user-align'>👤 {msg}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     clean = clean_text(msg)
 
-    # Math calculation
+    # Math calculator
     if is_math_expression(clean):
         result = safe_eval(clean)
-        st.markdown(f"<div class='chat-container'><div class='bot-bubble bot-align'>💬 {result}</div></div>", unsafe_allow_html=True):** {result}")
+        st.markdown(
+            f"""
+            <div class='chat-container'>
+                <div class='bot-bubble bot-align'>💬 {result}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
     else:
         # NLP model
         sentence = tokenize(msg)
@@ -104,7 +115,22 @@ if st.button("Send"):
         if prob.item() > 0.75:
             for intent in intents["intents"]:
                 if tag == intent["tag"]:
-                    st.markdown(f"<div class='chat-container'><div class='bot-bubble bot-align'>💬 {random.choice(intent['responses'])}</div></div>", unsafe_allow_html=True) {random.choice(intent['responses'])}")
+                    reply = random.choice(intent["responses"])
+                    st.markdown(
+                        f"""
+                        <div class='chat-container'>
+                            <div class='bot-bubble bot-align'>💬 {reply}</div>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
                     break
         else:
-            st.markdown("<div class='chat-container'><div class='bot-bubble bot-align'>💬 I do not understand. Please rephrase.</div></div>", unsafe_allow_html=True):** I do not understand. Please rephrase.")
+            st.markdown(
+                """
+                <div class='chat-container'>
+                    <div class='bot-bubble bot-align'>💬 I do not understand. Please rephrase.</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
